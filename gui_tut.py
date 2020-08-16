@@ -30,22 +30,22 @@ def interface(): #change to main menu?
         import RockPaperScissorsJP
         RockPaperScissorsJP.game()    
     
-    def hm():
+    def hm():   #Working but not entirely
         import Hangman
         Hangman.hangman("c") 
     
-    def gmc(): #set the type here in () and transfer it to the one that launched
+    def gmc(): #NOT WORKING & set the type here in () and transfer it to the one that launched
         import cardGuessingGame
         cardGuessingGame.cardGuessingGame("easy") 
     
-    def gmn():
+    def gmn(): #NOT WORKING
         import guessANumber
         guessANumber.guessANumber("easy")
 
     #Game Buttons
-    GMC = tkinter.Button(text="Guess My Card", bd = 3, width = 20)
+    GMC = tkinter.Button(text="Guess My Card", bd = 3, width = 20, state = DISABLED)
     HM = tkinter.Button(text ="Hangman", command = hm, bd = 3, width = 20)
-    GMN = tkinter.Button(text="Guess My Number", bd = 3, width = 20)
+    GMN = tkinter.Button(text="Guess My Number", bd = 3, width = 20, state = DISABLED)
     RPS = tkinter.Button(text="Rock Paper Scissors", command = rps, bd = 3, width = 20)
     BS = tkinter.Button(text="BattleShip", bd = 3, width = 20, state = DISABLED)
     TTT = tkinter.Button(text="Tic Tac Toe", bd = 3, width = 20, state = DISABLED)
