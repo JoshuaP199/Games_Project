@@ -1,0 +1,25 @@
+import random
+def rps(o):
+    if o.lower() == 'h':
+        p1 = input("Player 1: Select rock (r), paper (p), scissors (s)")
+        p2 = input("Player 2: Select rock (r), paper (p), scissors (s)")
+    else: 
+        p1 = input("Select rock (r), paper (p), scissors (s)")
+        options = ['r', 'p', 's']
+        p2 = random.choice(options)
+    if ((p1 == 'r') and (p2 == 's')) or ((p1== 'p') and (p2 == 'r')) :
+        if o.lower() == 'h':
+            print("Player One Wins!")
+        else:
+            print("You Win!")
+    elif ((p1 == "r") and (p2 == "r")) or ((p1 == "p") and (p2 == "p")) or ((p1 == "s") or (p2 == "s")):
+        print("Tie")
+    else:
+        if o.lower() == 'h':
+            print("Player Two Wins!")
+        else:
+            print("Computer wins!")
+    if input("Do you want to play again? (y) or (n)") == 'y':
+        rps(o)
+    else:
+        menu()
