@@ -27,8 +27,8 @@ def interface():
 
     #Games
     def rps():
-        import RockPaperScissors
-        RockPaperScissors.game()    
+        import RockPaperScissorsJP
+        RockPaperScissorsJP.game()    
 
     #Game Buttons
     GMC = tkinter.Button(text="Guess My Card", bd = 3, width = 20, state = DISABLED)
