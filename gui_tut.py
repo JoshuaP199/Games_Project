@@ -72,8 +72,4 @@ def interface(): #change to main menu?
     
     window.mainloop() #Always at bottom of window code
 
-def start():
-    interface()
-
-start()
-#figure out a way to close the menu window when the user starts a game
+interface()

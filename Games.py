@@ -3,7 +3,6 @@ from random import *
 import sys
 
 
-
 def RPSJP():
 #Created by Joshua Perez
 
@@ -68,10 +67,14 @@ def RPSJP():
             print('You did not enter a valid letter. Quitting game.')
             sys.exit()
 
-def BackToMenu(): #current issue Doesnt close TTT window so it doesnt allow interface to run
+
+def BackToMenu(): #current issue: Doesnt close TTT window so it doesnt allow interface to run properly
     import gui_tut
     window.destroy()
-    #gui_tut.interface()
+    gui_tut.interface()
+
+player = 0
+counter = 0
 
 def TTT():
     #Window Name
@@ -79,24 +82,32 @@ def TTT():
     window.title('Tic Tac Toe')
     window.grid()
 
-    def x(r, c):
-        bx = tkinter.Button(text="X", height = 10, width = 20, padx = 5) #when i make these disabled it doesnt work when called from gui_tut
-        bx.grid(row= r, column = c)
-
-    def o(r, c):
-        bo = tkinter.Button(text="O", height = 10, width = 20, padx = 5)
-        bo.grid(row= r, column = c)
+    def marker():
+        global player 
+        global counter
+        if counter != 9:
+            if player == 0:
+                print("player 1")
+                player += 1
+                counter += 1
+            elif player == 1:
+                print("player 2")
+                player -= 1
+                counter += 1
+        if counter == 9: #make this a pop-up window
+            print("Game Over")
 
     #Buttons
-    b1 = tkinter.Button(text="1", height = 10, width = 20, padx = 5) 
-    b2 = tkinter.Button(text="2", height = 10, width = 20, padx = 5, command = x(0, 1)) #not working
-    b3 = tkinter.Button(text="3", height = 10, width = 20, padx = 5, command = o(0, 2))
-    b4 = tkinter.Button(text="4", height = 10, width = 20, padx = 5)
-    b5 = tkinter.Button(text="5", height = 10, width = 20, padx = 5)
-    b6 = tkinter.Button(text="6", height = 10, width = 20, padx = 5)
-    b7 = tkinter.Button(text="7", height = 10, width = 20, padx = 5)
-    b8 = tkinter.Button(text="8", height = 10, width = 20, padx = 5)
-    b9 = tkinter.Button(text="9", height = 10, width = 20, padx = 5)
+    #maybe add buttons for player one and player 2 so it knows to put an X or an O in the spot that is clicked?
+    b1 = tkinter.Button(text="1", height = 10, width = 20, padx = 5, command = marker) #command lambda: marker(variable) this is how it suppose to work when passing
+    b2 = tkinter.Button(text="2", height = 10, width = 20, padx = 5, command = marker)
+    b3 = tkinter.Button(text="3", height = 10, width = 20, padx = 5, command = marker)
+    b4 = tkinter.Button(text="4", height = 10, width = 20, padx = 5, command = marker)
+    b5 = tkinter.Button(text="5", height = 10, width = 20, padx = 5, command = marker)
+    b6 = tkinter.Button(text="6", height = 10, width = 20, padx = 5, command = marker)
+    b7 = tkinter.Button(text="7", height = 10, width = 20, padx = 5, command = marker)
+    b8 = tkinter.Button(text="8", height = 10, width = 20, padx = 5, command = marker)
+    b9 = tkinter.Button(text="9", height = 10, width = 20, padx = 5, command = marker)
     menu = tkinter.Button(text = "Back to Menu", command = BackToMenu, height = 5, width = 18, pady = 10)
 
     b1.grid(row = 0, column = 0)
@@ -108,7 +119,7 @@ def TTT():
     b7.grid(row = 2, column = 0)
     b8.grid(row = 2, column = 1)
     b9.grid(row = 2, column = 2)
-    menu.grid(row = 4, column = 1)
+    menu.grid(row = 3, column = 1)
 
     window.mainloop()
 

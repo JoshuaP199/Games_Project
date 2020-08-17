@@ -1,32 +1,74 @@
 #Created by Joshua Perez
 
-import tkinter
+import tkinter as tk
 from tkinter import *
+
+player = 0
+counter = 0
 
 def TTT():
     #Window Name
-    window = tkinter.Tk()
+    window = Tk()
     window.title('Tic Tac Toe')
-    window.grid()
+    frame = Frame(window)
+    frame.grid()
 
-    def x(r, c):
-        bx = tkinter.Button(text="X", height = 10, width = 20, padx = 5, state = DISABLED)
-        bx.grid(row= r, column = c)
+    menuBar = Menu(frame)
+    menuBar.add_command(label = "Restart", command = Tk.update) #want to make a restart button
+    window.config(menu = menuBar)
 
-    def o(r, c):
-        bo = tkinter.Button(text="O", height = 10, width = 20, padx = 5, state = DISABLED)
-        bo.grid(row= r, column = c)
+    #Disables all buttons once game is over
+    def bDisable():
+        b1.configure(state = DISABLED)
+        b2.configure(state = DISABLED)
+        b3.configure(state = DISABLED)
+        b4.configure(state = DISABLED)
+        b5.configure(state = DISABLED)
+        b6.configure(state = DISABLED)
+        b7.configure(state = DISABLED)
+        b8.configure(state = DISABLED)
+        b9.configure(state = DISABLED)
+
+    #places X and O on selected spots
+    def marker(b):
+        global player 
+        global counter
+
+        if counter == 8:
+            print("Game Over")
+            bDisable()
+
+        elif b["text"] == "" and player == 0: #checks if "text" within the button is blank and sees which player is choosing
+            b["text"] = "X"
+            player += 1
+            counter += 1
+            check()
+
+        elif b["text"] == "" and player == 1:
+            b["text"] = "O"
+            player -= 1
+            counter += 1
+            check()
+
+    def check(): #checks for win conditions
+        if (b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "X":
+            print("player 1 Wins!")
+            bDisable()
+        elif (b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "O":
+            print("player 2 Wins!")
+            bDisable()
 
     #Buttons
-    b1 = tkinter.Button(text="1", height = 10, width = 20, padx = 5) 
-    b2 = tkinter.Button(text="2", height = 10, width = 20, padx = 5, command = x(0, 1)) #not working
-    b3 = tkinter.Button(text="3", height = 10, width = 20, padx = 5, command = o(0, 2))
-    b4 = tkinter.Button(text="4", height = 10, width = 20, padx = 5)
-    b5 = tkinter.Button(text="5", height = 10, width = 20, padx = 5)
-    b6 = tkinter.Button(text="6", height = 10, width = 20, padx = 5)
-    b7 = tkinter.Button(text="7", height = 10, width = 20, padx = 5)
-    b8 = tkinter.Button(text="8", height = 10, width = 20, padx = 5)
-    b9 = tkinter.Button(text="9", height = 10, width = 20, padx = 5)
+    b1 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b1))
+    b2 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b2))
+    b3 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b3))
+    b4 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b4))
+    b5 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b5))
+    b6 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b6))
+    b7 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b7))
+    b8 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b8))
+    b9 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b9))
+    #menu = tkinter.Button(text = "Back to Menu", command = BackToMenu, height = 5, width = 18, pady = 10)
 
     b1.grid(row = 0, column = 0)
     b2.grid(row = 0, column = 1)
@@ -37,7 +79,8 @@ def TTT():
     b7.grid(row = 2, column = 0)
     b8.grid(row = 2, column = 1)
     b9.grid(row = 2, column = 2)
+    #menu.grid(row = 3, column = 1)
 
     window.mainloop()
 
-#TTT()
+TTT()
