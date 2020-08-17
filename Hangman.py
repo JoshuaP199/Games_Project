@@ -64,7 +64,7 @@ def displayWord(guessWord, lettersGuessed):
             stringy+= " "
             stringy += thingy
             stringy+= " "
-        print(stringy)
+        return stringy
 
 def chooseWord():
     import random
@@ -75,6 +75,17 @@ def chooseWord():
                  'gegenschien', 'antapology', 'petrichor', 'quixotic', 'anagnorisis', 'alexithymia', 'obviate',
                  'flummox', 'dowdy', 'nincompoop', 'muesli', 'myopic', 'bamboozle', 'phyllo', 'thwart', 'brouhaha', 'zeal', 'pneumatic', 'noxious', 'flimflam', 'abomasum', 'wanderlust']
     return random.choice(words)
+
+def removeChar(s, c) : 
+    counts = s.count(c) 
+    s = list(s) 
+    while counts : 
+        s.remove(c) 
+        counts -= 1
+    s = '' . join(s) 
+    return s
+
+
 def hangman(o):
     if o == 'c':
         guessWord = chooseWord()
@@ -86,19 +97,35 @@ def hangman(o):
     correctLetters = []
     bodyLeft(bodyParts, guessWord)
     displayWord(guessWord, correctLetters)
-    guessed = False
-    while (bodyParts != 6) or (guessed != True):
+    while True:
         guessedLetters.append(input("Guess a letter").lower())
         if guessedLetters[-1] not in guessWord:
             bodyParts +=1
             bodyLeft(bodyParts, guessWord)
-            displayWord(guessWord, correctLetters)
+            word = str(displayWord(guessWord, correctLetters))
+            print(word)
         else: 
             correctLetters.append(guessedLetters[-1])
-            displayWord(guessWord, correctLetters)
+            word = str(displayWord(guessWord, correctLetters))
+            print(word)
             bodyLeft(bodyParts, guessWord)
-        if len(correctLetters) == len(guessWord):
-            guessed = True
+        word = removeChar(word, " ")
+        word = removeChar(word, "_")
+        if len(word) == len(guessWord):
+            print("You Won!")
+            if (input("Do you want to play again?") == 'y'):
+                hangman('c')
+            else:
+                menu()      
+        elif (bodyParts == 6):
+            print("YOU ARE DOOMED TO ETERNAL DAMNATION!")
+            if (input("Do you want to play again?") == 'y'):
+                hangman('c')
+            else:
+                menu()
+            
+                
+        
         
             
             
