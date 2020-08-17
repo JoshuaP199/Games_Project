@@ -1,3 +1,8 @@
+###############################
+#  Created by Gillian Covillo #
+#         @gcovillo           #
+###############################
+
 def bodyLeft(bodyParts, guessWord):
     if bodyParts == 0:
         print(" ______")
@@ -76,14 +81,21 @@ def chooseWord():
                  'flummox', 'dowdy', 'nincompoop', 'muesli', 'myopic', 'bamboozle', 'phyllo', 'thwart', 'brouhaha', 'zeal', 'pneumatic', 'noxious', 'flimflam', 'abomasum', 'wanderlust']
     return random.choice(words)
 
-def removeChar(s, c) : 
-    counts = s.count(c) 
-    s = list(s) 
-    while counts : 
-        s.remove(c) 
-        counts -= 1
-    s = '' . join(s) 
-    return s
+
+#########################
+#  Geeks for Geeks      #
+#########################
+def removeChar(s, c) :  #
+    counts = s.count(c) #
+    s = list(s)         #
+    while counts :      #
+        s.remove(c)     #
+        counts -= 1     #
+    s = '' . join(s)    #
+    return s            #
+#########################
+#  Geeks for Geeks      #
+#########################
 
 
 def hangman(o):
@@ -98,17 +110,29 @@ def hangman(o):
     bodyLeft(bodyParts, guessWord)
     displayWord(guessWord, correctLetters)
     while True:
-        guessedLetters.append(input("Guess a letter").lower())
-        if guessedLetters[-1] not in guessWord:
+        print("Guessed Letters: ", [letter for letter in guessedLetters])
+        alphabet = ["a", 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+                    'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+                    'v', 'w', 'y', 'x', 'z']
+        gl = input("Guess a letter: ")
+        if gl not in alphabet:
+            print("Please enter only one letter!")
+            continue
+        if gl in guessedLetters:
+            print("You have already guessed this letter, please guess again!")
+            continue
+        guessedLetters.append(gl)
+        if gl not in guessWord:
             bodyParts +=1
             bodyLeft(bodyParts, guessWord)
             word = str(displayWord(guessWord, correctLetters))
             print(word)
         else: 
-            correctLetters.append(guessedLetters[-1])
+            correctLetters.append(gl)
             word = str(displayWord(guessWord, correctLetters))
-            print(word)
             bodyLeft(bodyParts, guessWord)
+            print(word)
+                       
         word = removeChar(word, " ")
         word = removeChar(word, "_")
         if len(word) == len(guessWord):
@@ -123,10 +147,4 @@ def hangman(o):
                 hangman('c')
             else:
                 menu()
-            
-                
-        
-        
-            
-            
-        
+           
