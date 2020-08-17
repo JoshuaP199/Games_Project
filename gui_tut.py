@@ -3,6 +3,7 @@
 import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
+import Games
 
 #can make def's of each game and write all the code here in each one or find a way
 #to link another file and run it through the def.
@@ -27,20 +28,32 @@ def interface(): #change to main menu?
 
     #Games
     def rps():
-        import RockPaperScissorsJP
-        RockPaperScissorsJP.game()    
-    
+        window.destroy() 
+        Games.RPSJP()   
+        
+
     def hm():   #Working but not entirely
         import Hangman
-        Hangman.hangman("c") 
+        window.destroy() 
+        Hangman.hangman("c")
+
     
     def gmc(): #NOT WORKING & set the type here in () and transfer it to the one that launched
         import cardGuessingGame
+        window.destroy() 
         cardGuessingGame.cardGuessingGame("easy") 
+
     
     def gmn(): #NOT WORKING
         import guessANumber
+        window.destroy() 
         guessANumber.guessANumber("easy")
+
+
+    def ttt():
+        window.destroy()
+        Games.TTT()
+
 
     #Game Buttons
     GMC = tkinter.Button(text="Guess My Card", bd = 3, width = 20, state = DISABLED)
@@ -48,7 +61,7 @@ def interface(): #change to main menu?
     GMN = tkinter.Button(text="Guess My Number", bd = 3, width = 20, state = DISABLED)
     RPS = tkinter.Button(text="Rock Paper Scissors", command = rps, bd = 3, width = 20)
     BS = tkinter.Button(text="BattleShip", bd = 3, width = 20, state = DISABLED)
-    TTT = tkinter.Button(text="Tic Tac Toe", bd = 3, width = 20, state = DISABLED)
+    TTT = tkinter.Button(text="Tic Tac Toe", bd = 3, width = 20, command = ttt)
 
     GMC.pack()
     HM.pack()
@@ -57,11 +70,10 @@ def interface(): #change to main menu?
     BS.pack()
     TTT.pack()
     
-    #attempt at trying to close window
-    def close_window():
-        window.destroy()
-
     window.mainloop() #Always at bottom of window code
 
-interface()
+def start():
+    interface()
+
+start()
 #figure out a way to close the menu window when the user starts a game

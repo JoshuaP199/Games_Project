@@ -4,7 +4,7 @@
 pip install pyinstaller
 
 ::change path to where it is on your pc
-cd C:\Users\joshp\Documents\GitHub\Games_Project
+cd C:\Users\joshp\OneDrive\Documents\GitHub\Games_Project
 pyinstaller --onefile gui_tut.py
 
 pause

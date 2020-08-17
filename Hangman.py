@@ -99,7 +99,3 @@ def hangman(o):
             bodyLeft(bodyParts, guessWord)
         if len(correctLetters) == len(guessWord):
             guessed = True
-        
-            
-            
-        
