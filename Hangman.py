@@ -1,3 +1,8 @@
+###############################
+#  Created by Gillian Covillo #
+#         @gcovillo           #
+###############################
+
 def bodyLeft(bodyParts, guessWord):
     if bodyParts == 0:
         print(" ______")
@@ -64,7 +69,7 @@ def displayWord(guessWord, lettersGuessed):
             stringy+= " "
             stringy += thingy
             stringy+= " "
-        print(stringy)
+        return stringy
 
 def chooseWord():
     import random
@@ -75,6 +80,24 @@ def chooseWord():
                  'gegenschien', 'antapology', 'petrichor', 'quixotic', 'anagnorisis', 'alexithymia', 'obviate',
                  'flummox', 'dowdy', 'nincompoop', 'muesli', 'myopic', 'bamboozle', 'phyllo', 'thwart', 'brouhaha', 'zeal', 'pneumatic', 'noxious', 'flimflam', 'abomasum', 'wanderlust']
     return random.choice(words)
+
+'''
+#########################
+#  Geeks for Geeks      #
+#########################
+def removeChar(s, c) :  #
+    counts = s.count(c) #
+    s = list(s)         #
+    while counts :      #
+        s.remove(c)     #
+        counts -= 1     #
+    s = '' . join(s)    #
+    return s            #
+#########################
+#  Geeks for Geeks      #
+#########################
+'''
+
 def hangman(o):
     if o == 'c':
         guessWord = chooseWord()
@@ -86,16 +109,44 @@ def hangman(o):
     correctLetters = []
     bodyLeft(bodyParts, guessWord)
     displayWord(guessWord, correctLetters)
-    guessed = False
-    while (bodyParts != 6) or (guessed != True):
-        guessedLetters.append(input("Guess a letter").lower())
-        if guessedLetters[-1] not in guessWord:
+    while True:
+        print("Guessed Letters: ", [letter for letter in guessedLetters])
+        alphabet = ["a", 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+                    'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+                    'v', 'w', 'y', 'x', 'z']
+        gl = input("Guess a letter: ")
+        if gl not in alphabet:
+            print("Please enter only one letter!")
+            continue
+        if gl in guessedLetters:
+            print("You have already guessed this letter, please guess again!")
+            continue
+        guessedLetters.append(gl)
+        if gl not in guessWord:
             bodyParts +=1
             bodyLeft(bodyParts, guessWord)
-            displayWord(guessWord, correctLetters)
+            word = str(displayWord(guessWord, correctLetters))
+            print(word)
         else: 
-            correctLetters.append(guessedLetters[-1])
-            displayWord(guessWord, correctLetters)
+            correctLetters.append(gl)
+            word = str(displayWord(guessWord, correctLetters))
             bodyLeft(bodyParts, guessWord)
         if len(correctLetters) == len(guessWord):
             guessed = True
+            print(word)
+                       
+        word = removeChar(word, " ")
+        word = removeChar(word, "_")
+        if len(word) == len(guessWord):
+            print("You Won!")
+            if (input("Do you want to play again?") == 'y'):
+                hangman('c')
+            else:
+                menu()      
+        elif (bodyParts == 6):
+            print("YOU ARE DOOMED TO ETERNAL DAMNATION!")
+            if (input("Do you want to play again?") == 'y'):
+                hangman('c')
+            else:
+                menu()
+           
