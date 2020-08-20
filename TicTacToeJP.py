@@ -10,13 +10,14 @@ def TTT():
     #Window Name
     window = Tk()
     window.title('Tic Tac Toe')
+    '''
     frame = Frame(window)
     frame.grid()
 
     menuBar = Menu(frame)
     menuBar.add_command(label = "Restart", command = Tk.update) #want to make a restart button
     window.config(menu = menuBar)
-
+    '''
     #Disables all buttons once game is over
     def bDisable():
         b1.configure(state = DISABLED)
@@ -42,19 +43,19 @@ def TTT():
             b["text"] = "X"
             player += 1
             counter += 1
-            check()
+            check(b1,b2,b3,b4,b5,b6,b7,b8,b9)
 
         elif b["text"] == "" and player == 1:
             b["text"] = "O"
             player -= 1
             counter += 1
-            check()
+            check(b1,b2,b3,b4,b5,b6,b7,b8,b9)
 
-    def check(): #checks for win conditions
-        if (b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "X":
+    def check(b1,b2,b3,b4,b5,b6,b7,b8,b9): #checks for win conditions
+        if b1 and b2 and b3 and b4 and b5 and b6 and b7 and b8 and b9 == "X": #(b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "X":
             print("player 1 Wins!")
             bDisable()
-        elif (b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "O":
+        elif b1 and b2 and b3 and b4 and b5 and b6 and b7 and b8 and b9 == "O": #(b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "O":
             print("player 2 Wins!")
             bDisable()
 
