@@ -52,12 +52,31 @@ def TTT():
             check(b1,b2,b3,b4,b5,b6,b7,b8,b9)
 
     def check(b1,b2,b3,b4,b5,b6,b7,b8,b9): #checks for win conditions
-        if b1 and b2 and b3 and b4 and b5 and b6 and b7 and b8 and b9 == "X": #(b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "X":
-            print("player 1 Wins!")
+        if (b1["text"] == b2["text"] == b3["text"]):
+            print(b1["text"], "Wins!")
             bDisable()
-        elif b1 and b2 and b3 and b4 and b5 and b6 and b7 and b8 and b9 == "O": #(b1["text"] and b2["text"] and b3["text"]) or (b1["text"] and b4["text"] and b7["text"]) or (b1["text"] and b5["text"] and b9["text"]) or (b3["text"] and b6["text"] and b9["text"]) or (b7["text"] and b8["text"] and b9["text"]) or (b7["text"] and b5["text"] and b3["text"]) or (b2["text"] and b5["text"] and b8["text"]) or (b4["text"] and b5["text"] and b6["text"]) == "O":
-            print("player 2 Wins!")
+        elif (b1["text"] == b4["text"] == b7["text"]):
+            print(b1["text"], "Wins!")
             bDisable()
+        elif (b1["text"] == b5["text"] == b9["text"]):
+            print(b1["text"], "Wins!")
+            bDisable()
+        elif (b3["text"] == b6["text"] == b9["text"]):
+            print(b3["text"], "Wins!")
+            bDisable()
+        elif (b7["text"] == b8["text"] == b9["text"]):
+            print(b7["text"], "Wins!")
+            bDisable()
+        elif (b7["text"] == b5["text"] == b3["text"]):
+            print(b7["text"], "Wins!")
+            bDisable()
+        elif (b2["text"] == b5["text"] == b8["text"]):
+            print(b2["text"], "Wins!")
+            bDisable()
+        elif (b4["text"] == b5["text"] == b6["text"]):
+            print(b4["text"], "Wins!")
+            bDisable()
+        
 
     #Buttons
     b1 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b1))
