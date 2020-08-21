@@ -10,6 +10,7 @@ def TTT():
     #Window Name
     window = Tk()
     window.title('Tic Tac Toe')
+
     '''
     frame = Frame(window)
     frame.grid()
@@ -18,6 +19,7 @@ def TTT():
     menuBar.add_command(label = "Restart", command = Tk.update) #want to make a restart button
     window.config(menu = menuBar)
     '''
+    
     #Disables all buttons once game is over
     def bDisable():
         b1.configure(state = DISABLED)
@@ -35,46 +37,48 @@ def TTT():
         global player 
         global counter
 
-        if counter == 8:
-            print("Game Over")
-            bDisable()
-
-        elif b["text"] == "" and player == 0: #checks if "text" within the button is blank and sees which player is choosing
+        if b["text"] == "" and player == 0: #checks if "text" within the button is blank and sees which player is choosing
             b["text"] = "X"
             player += 1
             counter += 1
-            check(b1,b2,b3,b4,b5,b6,b7,b8,b9)
-
         elif b["text"] == "" and player == 1:
             b["text"] = "O"
             player -= 1
             counter += 1
-            check(b1,b2,b3,b4,b5,b6,b7,b8,b9)
 
-    def check(b1,b2,b3,b4,b5,b6,b7,b8,b9): #checks for win conditions
-        if (b1["text"] == b2["text"] == b3["text"]):
-            print(b1["text"], "Wins!")
+        check(b1,b2,b3,b4,b5,b6,b7,b8,b9, b["text"])
+
+        if counter == 9:
+            print("Game Over")
             bDisable()
-        elif (b1["text"] == b4["text"] == b7["text"]):
-            print(b1["text"], "Wins!")
+
+#Check is very slow at displaying
+    def check(b1,b2,b3,b4,b5,b6,b7,b8,b9, m): #checks for win conditions 
+        #print(m)
+        #print(b1["text"] == b2["text"] == b3["text"] == "X")
+        if (b1["text"] == b2["text"] == b3["text"] == "X") or (b1["text"] == b2["text"] == b3["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b1["text"] == b5["text"] == b9["text"]):
-            print(b1["text"], "Wins!")
+        elif (b1["text"] == b4["text"] == b7["text"] == "X") or (b1["text"] == b4["text"] == b7["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b3["text"] == b6["text"] == b9["text"]):
-            print(b3["text"], "Wins!")
+        elif (b1["text"] == b5["text"] == b9["text"] == "X") or (b1["text"] == b5["text"] == b9["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b7["text"] == b8["text"] == b9["text"]):
-            print(b7["text"], "Wins!")
+        elif (b3["text"] == b6["text"] == b9["text"] == "X") or (b3["text"] == b6["text"] == b9["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b7["text"] == b5["text"] == b3["text"]):
-            print(b7["text"], "Wins!")
+        elif (b7["text"] == b8["text"] == b9["text"] == "X") or (b7["text"] == b8["text"] == b9["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b2["text"] == b5["text"] == b8["text"]):
-            print(b2["text"], "Wins!")
+        elif (b7["text"] == b5["text"] == b3["text"] == "X") or (b7["text"] == b5["text"] == b3["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
-        elif (b4["text"] == b5["text"] == b6["text"]):
-            print(b4["text"], "Wins!")
+        elif (b2["text"] == b5["text"] == b8["text"] == "X") or (b2["text"] == b5["text"] == b8["text"] == "O"):
+            print(m, "Wins!")
+            bDisable()
+        elif (b4["text"] == b5["text"] == b6["text"] == "X") or (b4["text"] == b5["text"] == b6["text"] == "O"):
+            print(m, "Wins!")
             bDisable()
         
 
