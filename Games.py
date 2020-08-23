@@ -3,6 +3,11 @@ from tkinter import *
 from random import *
 import sys
 
+def BackToMenu(): #current issue: Doesnt close TTT window so it doesnt allow interface to run properly
+    import gui_tut
+    window.destroy()
+    gui_tut.interface()
+
 
 def RPSJP():
 #Created by Joshua Perez
@@ -69,13 +74,8 @@ def RPSJP():
             sys.exit()
 
 
-def BackToMenu(): #current issue: Doesnt close TTT window so it doesnt allow interface to run properly
-    import gui_tut
-    window.destroy()
-    gui_tut.interface()
-
-player = 0
-counter = 0
+Tplayer = 0
+Tcounter = 0
 
 def TTT():
     #Created by Joshua Perez
@@ -107,21 +107,21 @@ def TTT():
 
     #places X and O on selected spots
     def marker(b):
-        global player 
-        global counter
+        global Tplayer 
+        global Tcounter
 
-        if b["text"] == "" and player == 0: #checks if "text" within the button is blank and sees which player is choosing
+        if b["text"] == "" and Tplayer == 0: #checks if "text" within the button is blank and sees which player is choosing
             b["text"] = "X"
-            player += 1
-            counter += 1
-        elif b["text"] == "" and player == 1:
+            Tplayer += 1
+            Tcounter += 1
+        elif b["text"] == "" and Tplayer == 1:
             b["text"] = "O"
-            player -= 1
-            counter += 1
+            Tplayer -= 1
+            Tcounter += 1
 
         check(b1,b2,b3,b4,b5,b6,b7,b8,b9, b["text"])
 
-        if counter == 9:
+        if Tcounter == 9:
             print("Game Over")
             bDisable()
 
@@ -165,7 +165,7 @@ def TTT():
     b7 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b7))
     b8 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b8))
     b9 = tk.Button(text="", height = 10, width = 20, padx = 5, command = lambda: marker(b9))
-    #menu = tkinter.Button(text = "Back to Menu", command = BackToMenu, height = 5, width = 18, pady = 10)
+    menu = tk.Button(text = "Back to Menu", command = lambda: BackToMenu(), height = 5, width = 18, pady = 10)
 
     b1.grid(row = 0, column = 0)
     b2.grid(row = 0, column = 1)
@@ -176,6 +176,6 @@ def TTT():
     b7.grid(row = 2, column = 0)
     b8.grid(row = 2, column = 1)
     b9.grid(row = 2, column = 2)
-    #menu.grid(row = 3, column = 1)
+    menu.grid(row = 3, column = 1)
 
     window.mainloop()
