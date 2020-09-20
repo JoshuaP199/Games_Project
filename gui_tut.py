@@ -50,7 +50,7 @@ def interface(): #change to main menu?
         guessANumber.guessANumber("easy")
 
 
-    def ttt():
+    def ttt(): #Using Games.py file
         window.destroy()
         Games.TTT()
 
