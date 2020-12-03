@@ -6,11 +6,14 @@ from tkinter import *
 player = 0
 counter = 0
 
+#NEED TO MAKE IT SO THAT THE WINNER IS DISPLAYED IN A POP UP, NOT IN THE TERMINAL AND HAVE A PLAY AGAIN/BACK TO MENU BUTTON
+
 def TTT():
     #Window Name
     window = Tk()
     window.title('Tic Tac Toe')
 
+    #Window bar with settings like how VS code has file edit ect. at the top
     '''
     frame = Frame(window)
     frame.grid()

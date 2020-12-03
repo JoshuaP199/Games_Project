@@ -5,8 +5,8 @@ from tkinter import *
 from PIL import ImageTk, Image
 import Games
 
-#can make def's of each game and write all the code here in each one or find a way
-#to link another file and run it through the def.
+#can make functions for each game and write all the code here in each one or find a way
+#to link another file and run it through the function.
 
 def interface(): #change to main menu?
     #Window Name
